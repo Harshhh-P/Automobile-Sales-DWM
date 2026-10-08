@@ -15,17 +15,12 @@ CORS(app)
 # MYSQL DATABASE CONFIGURATION
 # ============================================================
 
-DB_CONFIG = {
-    "host": "localhost",
-    "user": "root",
-    "password": "root",
-    "database": "automobile_sales_dwm"
-}
+import sys
+import os
 
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-def get_connection():
-    return mysql.connector.connect(**DB_CONFIG)
-
+from database.db_connection import get_connection
 
 def execute_query(query, params=None):
     connection = get_connection()
