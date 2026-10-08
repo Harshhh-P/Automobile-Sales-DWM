@@ -1,6 +1,4 @@
-Flask
-Flask-CORS
-pandas
-numpy
+﻿Flask
+flask-cors
 mysql-connector-python
 python-dotenv
