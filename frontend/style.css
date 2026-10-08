@@ -1,0 +1,1119 @@
+/* ============================================================
+   MOTORIQ - GLOBAL
+============================================================ */
+
+:root {
+
+    --bg: #0B0A16;
+    --sidebar: #111025;
+    --panel: #17152A;
+    --panel-light: #201D38;
+
+    --border: #302B4D;
+
+    --text: #F8FAFC;
+    --muted: #A5A1B8;
+
+    --primary: #8B5CF6;
+    --primary-dark: #7C3AED;
+
+    --secondary: #6366F1;
+    --blue: #38BDF8;
+    --green: #22C55E;
+    --orange: #FB923C;
+    --red: #F87171;
+
+    --radius: 14px;
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+    margin: 0;
+
+    background: var(--bg);
+
+    color: var(--text);
+
+    font-family:
+        Inter,
+        Segoe UI,
+        Arial,
+        sans-serif;
+
+    overflow-x: hidden;
+}
+
+
+button,
+select {
+    font-family: inherit;
+}
+
+
+/* ============================================================
+   APP LAYOUT
+============================================================ */
+
+.app {
+
+    min-height: 100vh;
+
+    display: grid;
+
+    grid-template-columns: 260px minmax(0, 1fr);
+}
+
+
+/* ============================================================
+   SIDEBAR
+============================================================ */
+
+.sidebar {
+
+    width: 260px;
+
+    min-height: 100vh;
+
+    background: var(--sidebar);
+
+    border-right: 1px solid var(--border);
+
+    padding: 22px 16px;
+
+    position: sticky;
+
+    top: 0;
+
+    align-self: start;
+
+    overflow-y: auto;
+}
+
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 5px 10px 25px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+.brand-icon {
+
+    width: 42px;
+
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--secondary)
+        );
+
+    font-size: 21px;
+}
+
+
+.brand h1 {
+
+    margin: 0;
+
+    font-size: 21px;
+}
+
+
+.brand span {
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    letter-spacing: 0.4px;
+}
+
+
+/* ============================================================
+   NAVIGATION
+============================================================ */
+
+.navigation {
+
+    margin-top: 20px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.nav-item {
+
+    width: 100%;
+
+    min-height: 44px;
+
+    border: 0;
+
+    border-radius: 9px;
+
+    background: transparent;
+
+    color: var(--muted);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 0 13px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    transition: 0.2s;
+}
+
+
+.nav-item:hover {
+
+    background: var(--panel-light);
+
+    color: var(--text);
+}
+
+
+.nav-item.active {
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(139, 92, 246, 0.25),
+            rgba(99, 102, 241, 0.10)
+        );
+
+    color: white;
+
+    border-left: 3px solid var(--primary);
+}
+
+
+.nav-group {
+
+    margin-top: 7px;
+}
+
+
+.nav-heading {
+
+    color: #77728D;
+
+    text-transform: uppercase;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+    padding: 10px 13px 4px;
+}
+
+
+.sub-item {
+
+    padding-left: 35px;
+
+    font-size: 12px;
+}
+
+
+/* ============================================================
+   SIDEBAR FOOTER
+============================================================ */
+
+.sidebar-footer {
+
+    margin-top: 30px;
+
+    border-top: 1px solid var(--border);
+
+    padding: 17px 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+
+.status-dot {
+
+    width: 8px;
+
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: var(--green);
+
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.6);
+
+    flex-shrink: 0;
+}
+
+
+/* ============================================================
+   MAIN
+============================================================ */
+
+.main-wrapper {
+
+    min-width: 0;
+
+    width: 100%;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    overflow: hidden;
+}
+
+
+/* ============================================================
+   TOPBAR
+============================================================ */
+
+.topbar {
+
+    min-height: 76px;
+
+    padding: 17px 30px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    border-bottom: 1px solid var(--border);
+
+    background: rgba(11, 10, 22, 0.95);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 10;
+}
+
+
+.topbar h2 {
+
+    margin: 0 0 4px;
+
+    font-size: 20px;
+}
+
+
+.topbar p {
+
+    margin: 0;
+
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+
+.system-status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 8px 12px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 20px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+
+/* ============================================================
+   MAIN CONTENT
+============================================================ */
+
+.main-content {
+
+    width: 100%;
+
+    min-width: 0;
+
+    padding: 28px 30px 50px;
+}
+
+
+.page-section {
+
+    display: none;
+
+    width: 100%;
+
+    min-width: 0;
+}
+
+
+.page-section.active {
+
+    display: block;
+}
+
+
+.section-header {
+
+    margin-bottom: 22px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 15px;
+}
+
+
+.section-header h2 {
+
+    margin: 0 0 5px;
+
+    font-size: 24px;
+}
+
+
+.section-header p {
+
+    margin: 0;
+
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+
+/* ============================================================
+   KPI CARDS
+============================================================ */
+
+.kpi-grid {
+
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, minmax(0, 1fr));
+
+    gap: 16px;
+
+    margin-bottom: 20px;
+}
+
+
+.kpi-card {
+
+    min-width: 0;
+
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    padding: 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+
+.kpi-icon {
+
+    width: 43px;
+
+    height: 43px;
+
+    flex-shrink: 0;
+
+    border-radius: 11px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 18px;
+}
+
+
+.kpi-icon.purple {
+    background: rgba(139, 92, 246, 0.15);
+}
+
+
+.kpi-icon.blue {
+    background: rgba(56, 189, 248, 0.15);
+}
+
+
+.kpi-icon.green {
+    background: rgba(34, 197, 94, 0.15);
+}
+
+
+.kpi-icon.orange {
+    background: rgba(251, 146, 60, 0.15);
+}
+
+
+.kpi-icon.red {
+    background: rgba(248, 113, 113, 0.15);
+}
+
+
+.kpi-card span {
+
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    margin-bottom: 5px;
+}
+
+
+.kpi-card strong {
+
+    display: block;
+
+    font-size: 19px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+/* ============================================================
+   PANELS
+============================================================ */
+
+.panel {
+
+    min-width: 0;
+
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    padding: 20px;
+
+    margin-bottom: 18px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+
+.panel-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    margin-bottom: 16px;
+}
+
+
+.panel-header h3,
+.panel h3 {
+
+    margin: 0 0 5px;
+
+    font-size: 15px;
+}
+
+
+.panel-header span {
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+
+.panel-description {
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+
+/* ============================================================
+   DASHBOARD GRID
+============================================================ */
+
+.dashboard-grid {
+
+    width: 100%;
+
+    min-width: 0;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 18px;
+}
+
+
+.large-panel {
+
+    min-width: 0;
+}
+
+
+.chart-panel {
+
+    min-width: 0;
+
+    overflow: hidden;
+}
+
+
+.chart-box {
+
+    width: 100%;
+
+    height: 280px;
+
+    position: relative;
+
+    min-width: 0;
+}
+
+
+.chart-box canvas {
+
+    display: block !important;
+
+    width: 100% !important;
+
+    height: 100% !important;
+}
+
+
+.doughnut-box {
+
+    height: 280px;
+}
+
+
+/* ============================================================
+   OLAP
+============================================================ */
+
+.olap-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+
+.control-row {
+
+    display: flex;
+
+    gap: 9px;
+
+    margin-top: 15px;
+}
+
+
+select {
+
+    min-height: 38px;
+
+    padding: 0 11px;
+
+    background: var(--panel-light);
+
+    color: var(--text);
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    outline: none;
+
+    cursor: pointer;
+}
+
+
+select:focus {
+
+    border-color: var(--primary);
+}
+
+
+button {
+
+    min-height: 38px;
+
+    padding: 0 14px;
+
+    border: 0;
+
+    border-radius: 8px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--secondary)
+        );
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+
+button:hover {
+
+    transform: translateY(-1px);
+
+    filter: brightness(1.1);
+}
+
+
+.result-box {
+
+    margin-top: 16px;
+
+    max-height: 330px;
+
+    overflow: auto;
+}
+
+
+/* ============================================================
+   DICE
+============================================================ */
+
+.dice-controls {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 8px;
+
+    margin-top: 14px;
+
+    margin-bottom: 10px;
+}
+
+
+.dice-controls select {
+
+    width: 100%;
+}
+
+
+/* ============================================================
+   TABLES
+============================================================ */
+
+.table-container {
+
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    font-size: 12px;
+}
+
+
+th {
+
+    color: #C5C0D5;
+
+    font-weight: 600;
+
+    background: var(--panel-light);
+
+    text-align: left;
+
+    padding: 12px;
+
+    border-bottom: 1px solid var(--border);
+
+    white-space: nowrap;
+}
+
+
+td {
+
+    color: #D9D5E3;
+
+    padding: 11px 12px;
+
+    border-bottom: 1px solid rgba(48, 43, 77, 0.65);
+
+    white-space: nowrap;
+}
+
+
+tr:hover td {
+
+    background: rgba(139, 92, 246, 0.05);
+}
+
+
+/* ============================================================
+   MINING
+============================================================ */
+
+.mining-buttons {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 9px;
+
+    margin-bottom: 20px;
+}
+
+
+.mining-buttons button {
+
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    color: var(--muted);
+}
+
+
+.mining-buttons button:hover {
+
+    color: white;
+
+    border-color: var(--primary);
+
+    background: rgba(139, 92, 246, 0.12);
+}
+
+
+/* ============================================================
+   REPORTS
+============================================================ */
+
+.report-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+
+.report-card {
+
+    margin: 0;
+
+    min-height: 190px;
+}
+
+
+.report-icon {
+
+    font-size: 28px;
+
+    margin-bottom: 15px;
+}
+
+
+.report-card h3 {
+
+    font-size: 16px;
+}
+
+
+.report-card p {
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    line-height: 1.7;
+}
+
+
+/* ============================================================
+   ABOUT
+============================================================ */
+
+.about-panel {
+
+    max-width: 950px;
+}
+
+
+.about-panel h3 {
+
+    margin-top: 25px;
+
+    color: white;
+}
+
+
+.about-panel h3:first-child {
+
+    margin-top: 0;
+}
+
+
+.about-panel p {
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.8;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+
+@media (max-width: 1250px) {
+
+    .app {
+
+        grid-template-columns: 225px minmax(0, 1fr);
+    }
+
+    .sidebar {
+
+        width: 225px;
+    }
+
+    .kpi-grid {
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+}
+
+
+@media (max-width: 950px) {
+
+    .app {
+
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+
+        width: 100%;
+
+        min-height: auto;
+
+        position: relative;
+
+        border-right: 0;
+
+        border-bottom: 1px solid var(--border);
+    }
+
+    .navigation {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .nav-group {
+
+        margin-top: 0;
+    }
+
+    .sidebar-footer {
+
+        display: none;
+    }
+
+    .dashboard-grid,
+    .olap-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .report-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .main-content {
+
+        padding: 20px 15px 35px;
+    }
+
+    .topbar {
+
+        padding: 15px;
+
+        align-items: flex-start;
+    }
+
+    .system-status {
+
+        display: none;
+    }
+
+    .kpi-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .navigation {
+
+        grid-template-columns: 1fr;
+    }
+
+    .report-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .control-row {
+
+        flex-direction: column;
+    }
+
+    .control-row select,
+    .control-row button {
+
+        width: 100%;
+    }
+
+    .dice-controls {
+
+        grid-template-columns: 1fr;
+    }
+
+    .section-header h2 {
+
+        font-size: 20px;
+    }
+}

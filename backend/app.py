@@ -46,7 +46,6 @@ def execute_query(query, params=None):
 
 @app.route("/")
 def home():
-
     return jsonify({
         "project": "Automobile Sales Data Warehouse and Mining System",
         "status": "Backend API is running",
@@ -63,7 +62,6 @@ def home():
 
 @app.route("/api/health")
 def health():
-
     return jsonify({
         "status": "healthy",
         "database": "MySQL"
@@ -71,7 +69,7 @@ def health():
 
 
 # ============================================================
-# DASHBOARD
+# DASHBOARD - SUMMARY
 # ============================================================
 
 @app.route("/api/dashboard/summary")
@@ -90,6 +88,46 @@ def dashboard_summary():
     return jsonify(result[0])
 
 
+# ============================================================
+# DASHBOARD - COMPANY COUNT
+# ============================================================
+
+@app.route("/api/dashboard/company-count")
+def dashboard_company_count():
+
+    query = """
+        SELECT
+            COUNT(DISTINCT company) AS total_companies
+        FROM dim_vehicle
+    """
+
+    result = execute_query(query)
+
+    return jsonify(result[0])
+
+
+# ============================================================
+# DASHBOARD - DEALER COUNT
+# ============================================================
+
+@app.route("/api/dashboard/dealer-count")
+def dashboard_dealer_count():
+
+    query = """
+        SELECT
+            COUNT(*) AS total_dealers
+        FROM dim_dealer
+    """
+
+    result = execute_query(query)
+
+    return jsonify(result[0])
+
+
+# ============================================================
+# DASHBOARD - YEARLY SALES
+# ============================================================
+
 @app.route("/api/dashboard/yearly-sales")
 def yearly_sales():
 
@@ -107,6 +145,10 @@ def yearly_sales():
 
     return jsonify(execute_query(query))
 
+
+# ============================================================
+# DASHBOARD - MONTHLY SALES
+# ============================================================
 
 @app.route("/api/dashboard/monthly-sales")
 def monthly_sales():
@@ -133,6 +175,10 @@ def monthly_sales():
     return jsonify(execute_query(query))
 
 
+# ============================================================
+# DASHBOARD - REGIONS
+# ============================================================
+
 @app.route("/api/dashboard/regions")
 def dashboard_regions():
 
@@ -150,6 +196,10 @@ def dashboard_regions():
 
     return jsonify(execute_query(query))
 
+
+# ============================================================
+# DASHBOARD - BODY STYLE
+# ============================================================
 
 @app.route("/api/dashboard/body-styles")
 def dashboard_body_styles():
@@ -169,6 +219,10 @@ def dashboard_body_styles():
     return jsonify(execute_query(query))
 
 
+# ============================================================
+# DASHBOARD - TRANSMISSION
+# ============================================================
+
 @app.route("/api/dashboard/transmission")
 def dashboard_transmission():
 
@@ -186,6 +240,10 @@ def dashboard_transmission():
 
     return jsonify(execute_query(query))
 
+
+# ============================================================
+# DASHBOARD - COMPANIES
+# ============================================================
 
 @app.route("/api/dashboard/companies")
 def dashboard_companies():
@@ -766,15 +824,12 @@ def mining_customer_income():
             CASE
                 WHEN c.annual_income < 50000
                     THEN 'Low Income'
-
                 WHEN c.annual_income < 100000
                     THEN 'Medium Income'
-
                 ELSE 'High Income'
             END AS income_group,
 
             COUNT(f.sale_id) AS sales,
-
             COALESCE(SUM(f.price), 0) AS revenue
 
         FROM fact_sales f
@@ -783,7 +838,6 @@ def mining_customer_income():
             ON f.customer_id = c.customer_id
 
         GROUP BY income_group
-
         ORDER BY sales DESC
     """
 

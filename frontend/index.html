@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MotorIQ | Sales Analytics</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">⚙️</div>
+
+            <div>
+                <h1>MotorIQ</h1>
+                <span>Sales Analytics</span>
+            </div>
+        </div>
+
+        <nav class="navigation">
+
+            <button class="nav-item active" data-section="overview">
+                🏠
+                <span>Overview</span>
+            </button>
+
+            <div class="nav-group">
+
+                <div class="nav-heading">
+                    📊 OLAP Analysis
+                </div>
+
+                <button class="nav-item sub-item" data-section="olap">
+                    <span>Roll-Up / Drill-Down</span>
+                </button>
+
+            </div>
+
+            <button class="nav-item" data-section="vehicles">
+                🚗
+                <span>Vehicle Analysis</span>
+            </button>
+
+            <button class="nav-item" data-section="dealers">
+                🏢
+                <span>Dealer & Region</span>
+            </button>
+
+            <div class="nav-group">
+
+                <div class="nav-heading">
+                    ⛏ Data Mining
+                </div>
+
+                <button class="nav-item sub-item" data-section="mining">
+                    <span>Mining Analysis</span>
+                </button>
+
+            </div>
+
+            <button class="nav-item" data-section="reports">
+                📑
+                <span>Reports</span>
+            </button>
+
+            <button class="nav-item" data-section="about">
+                ℹ️
+                <span>About Project</span>
+            </button>
+
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="status-dot"></div>
+            <span>Database Connected</span>
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN WRAPPER
+    ====================================================== -->
+
+    <main class="main-wrapper">
+
+        <header class="topbar">
+
+            <div>
+                <h2 id="pageTitle">Dashboard Overview</h2>
+                <p>Automobile Sales Data Warehouse & Mining System</p>
+            </div>
+
+            <div class="system-status">
+                <span class="status-dot"></span>
+                MySQL Online
+            </div>
+
+        </header>
+
+
+        <section class="main-content">
+
+
+            <!-- =================================================
+                 OVERVIEW
+            ================================================== -->
+
+            <section id="overview" class="page-section active">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>Sales Overview</h2>
+                        <p>Key performance indicators and sales analytics</p>
+                    </div>
+
+                </div>
+
+
+                <!-- KPI CARDS -->
+
+                <div class="kpi-grid">
+
+                    <div class="kpi-card">
+
+                        <div class="kpi-icon purple">🛒</div>
+
+                        <div>
+                            <span>Total Sales</span>
+                            <strong id="totalSales">--</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="kpi-card">
+
+                        <div class="kpi-icon blue">💰</div>
+
+                        <div>
+                            <span>Total Revenue</span>
+                            <strong id="totalRevenue">--</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="kpi-card">
+
+                        <div class="kpi-icon green">📈</div>
+
+                        <div>
+                            <span>Average Sale</span>
+                            <strong id="averageSale">--</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="kpi-card">
+
+                        <div class="kpi-icon orange">🚘</div>
+
+                        <div>
+                            <span>Total Companies</span>
+                            <strong id="totalCompanies">--</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="kpi-card">
+
+                        <div class="kpi-icon red">🏢</div>
+
+                        <div>
+                            <span>Total Dealers</span>
+                            <strong id="totalDealers">--</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FIRST CHART ROW -->
+
+                <div class="dashboard-grid">
+
+                    <div class="panel chart-panel large-panel">
+
+                        <div class="panel-header">
+                            <div>
+                                <h3>Year-wise Sales</h3>
+                                <span>Sales volume by year</span>
+                            </div>
+                        </div>
+
+                        <div class="chart-box">
+                            <canvas id="yearChart"></canvas>
+                        </div>
+
+                    </div>
+
+
+                    <div class="panel chart-panel">
+
+                        <div class="panel-header">
+                            <div>
+                                <h3>Body Style</h3>
+                                <span>Sales distribution</span>
+                            </div>
+                        </div>
+
+                        <div class="chart-box doughnut-box">
+                            <canvas id="bodyStyleChart"></canvas>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SECOND CHART ROW -->
+
+                <div class="dashboard-grid">
+
+                    <div class="panel chart-panel">
+
+                        <div class="panel-header">
+                            <div>
+                                <h3>Monthly Sales</h3>
+                                <span>Monthly sales trend</span>
+                            </div>
+                        </div>
+
+                        <div class="chart-box">
+                            <canvas id="monthChart"></canvas>
+                        </div>
+
+                    </div>
+
+
+                    <div class="panel chart-panel">
+
+                        <div class="panel-header">
+                            <div>
+                                <h3>Transmission</h3>
+                                <span>Transmission-wise sales</span>
+                            </div>
+                        </div>
+
+                        <div class="chart-box doughnut-box">
+                            <canvas id="transmissionChart"></canvas>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- THIRD CHART ROW -->
+
+                <div class="dashboard-grid">
+
+                    <div class="panel chart-panel">
+
+                        <div class="panel-header">
+                            <div>
+                                <h3>Top Companies</h3>
+                                <span>Companies by revenue</span>
+                            </div>
+                        </div>
+
+                        <div class="chart-box">
+                            <canvas id="companyChart"></canvas>
+                        </div>
+
+                    </div>
+
+
+                    <div class="panel chart-panel">
+
+                        <div class="panel-header">
+                            <div>
+                                <h3>Region-wise Sales</h3>
+                                <span>Sales by dealer region</span>
+                            </div>
+                        </div>
+
+                        <div class="chart-box">
+                            <canvas id="regionChart"></canvas>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 OLAP
+            ================================================== -->
+
+            <section id="olap" class="page-section">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>OLAP Analysis</h2>
+                        <p>Explore warehouse data using OLAP operations</p>
+                    </div>
+
+                </div>
+
+
+                <div class="olap-grid">
+
+
+                    <div class="panel">
+
+                        <h3>Roll-Up</h3>
+
+                        <p class="panel-description">
+                            Aggregate sales from detailed levels to higher levels.
+                        </p>
+
+                        <div class="control-row">
+
+                            <select id="rollupLevel">
+                                <option value="year">Year</option>
+                                <option value="quarter">Quarter</option>
+                                <option value="month">Month</option>
+                            </select>
+
+                            <button id="rollupBtn">Run Roll-Up</button>
+
+                        </div>
+
+                        <div id="rollupResult" class="result-box"></div>
+
+                    </div>
+
+
+                    <div class="panel">
+
+                        <h3>Drill-Down</h3>
+
+                        <p class="panel-description">
+                            Move from yearly data into quarter and month details.
+                        </p>
+
+                        <div class="control-row">
+
+                            <select id="drillYear">
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                            </select>
+
+                            <button id="drillBtn">Run Drill-Down</button>
+
+                        </div>
+
+                        <div id="drillResult" class="result-box"></div>
+
+                    </div>
+
+
+                    <div class="panel">
+
+                        <h3>Slice</h3>
+
+                        <p class="panel-description">
+                            Select one year from the warehouse.
+                        </p>
+
+                        <div class="control-row">
+
+                            <select id="sliceYear">
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                            </select>
+
+                            <button id="sliceBtn">Run Slice</button>
+
+                        </div>
+
+                        <div id="sliceResult" class="result-box"></div>
+
+                    </div>
+
+
+                    <div class="panel">
+
+                        <h3>Dice</h3>
+
+                        <p class="panel-description">
+                            Filter data using multiple dimensions.
+                        </p>
+
+                        <div class="dice-controls">
+
+                            <select id="diceYear">
+                                <option value="">All Years</option>
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                            </select>
+
+                            <select id="diceRegion">
+                                <option value="">All Regions</option>
+                            </select>
+
+                            <select id="diceBody">
+                                <option value="">All Body Styles</option>
+                            </select>
+
+                            <select id="diceCompany">
+                                <option value="">All Companies</option>
+                            </select>
+
+                        </div>
+
+                        <button id="diceBtn">Run Dice</button>
+
+                        <div id="diceResult" class="result-box"></div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 VEHICLES
+            ================================================== -->
+
+            <section id="vehicles" class="page-section">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>Vehicle Analysis</h2>
+                        <p>Vehicle, company and model performance</p>
+                    </div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>Top Selling Models</h3>
+                            <span>Top 10 models by sales</span>
+                        </div>
+
+                    </div>
+
+                    <div id="vehicleModelTable" class="table-container"></div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>Company Performance</h3>
+                            <span>Company-wise sales and revenue</span>
+                        </div>
+
+                    </div>
+
+                    <div id="vehicleCompanyTable" class="table-container"></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 DEALERS
+            ================================================== -->
+
+            <section id="dealers" class="page-section">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>Dealer & Region Analysis</h2>
+                        <p>Dealer and regional performance analysis</p>
+                    </div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>Top Dealers</h3>
+                            <span>Dealer ranking by revenue</span>
+                        </div>
+
+                    </div>
+
+                    <div id="dealerTable" class="table-container"></div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>Regional Performance</h3>
+                            <span>Region-wise sales and revenue</span>
+                        </div>
+
+                    </div>
+
+                    <div id="dealerRegionTable" class="table-container"></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 MINING
+            ================================================== -->
+
+            <section id="mining" class="page-section">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>Data Mining</h2>
+                        <p>Discover patterns and business insights from warehouse data</p>
+                    </div>
+
+                </div>
+
+
+                <div class="mining-buttons">
+
+                    <button data-mining="company">Company</button>
+                    <button data-mining="model">Model</button>
+                    <button data-mining="dealer">Dealer</button>
+                    <button data-mining="region">Region</button>
+                    <button data-mining="customer-gender">Customer Gender</button>
+                    <button data-mining="customer-income">Customer Income</button>
+                    <button data-mining="vehicle-color">Vehicle Color</button>
+                    <button data-mining="expensive">Expensive Vehicles</button>
+                    <button data-mining="year">Year</button>
+                    <button data-mining="month">Month</button>
+                    <button data-mining="company-region">Company + Region</button>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3 id="miningTitle">Data Mining Results</h3>
+                            <span id="miningDescription">
+                                Select a mining analysis above.
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div id="miningResult" class="table-container"></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 REPORTS
+            ================================================== -->
+
+            <section id="reports" class="page-section">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>Reports</h2>
+                        <p>Project modules and analytical reports</p>
+                    </div>
+
+                </div>
+
+                <div class="report-grid">
+
+                    <div class="panel report-card">
+                        <div class="report-icon">📊</div>
+                        <h3>Data Warehouse</h3>
+                        <p>
+                            Star schema containing fact and dimension tables
+                            for automobile sales analysis.
+                        </p>
+                    </div>
+
+                    <div class="panel report-card">
+                        <div class="report-icon">🔄</div>
+                        <h3>OLAP Report</h3>
+                        <p>
+                            Roll-Up, Drill-Down, Slice and Dice operations
+                            on warehouse data.
+                        </p>
+                    </div>
+
+                    <div class="panel report-card">
+                        <div class="report-icon">⛏</div>
+                        <h3>Mining Report</h3>
+                        <p>
+                            Sales patterns, customer behavior, vehicle trends
+                            and regional performance.
+                        </p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 ABOUT
+            ================================================== -->
+
+            <section id="about" class="page-section">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>About Project</h2>
+                        <p>Automobile Sales Data Warehouse and Mining System</p>
+                    </div>
+
+                </div>
+
+                <div class="panel about-panel">
+
+                    <h3>Project Objective</h3>
+
+                    <p>
+                        MotorIQ is a Data Warehouse and Data Mining system
+                        designed to analyze automobile sales data using
+                        dimensional modeling, OLAP operations and analytical
+                        queries.
+                    </p>
+
+                    <h3>Data Warehouse</h3>
+
+                    <p>
+                        The system uses a Star Schema consisting of the
+                        Fact Sales table and dimensions such as Date,
+                        Customer, Vehicle, Dealer and Location.
+                    </p>
+
+                    <h3>OLAP Operations</h3>
+
+                    <p>
+                        The system supports Roll-Up, Drill-Down, Slice and
+                        Dice operations for multidimensional analysis.
+                    </p>
+
+                    <h3>Data Mining</h3>
+
+                    <p>
+                        Mining modules identify sales trends, top companies,
+                        popular models, dealer performance, customer patterns,
+                        vehicle preferences and regional trends.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
